@@ -11,6 +11,5 @@
 		"url": "git://github.com/marook/icalendar"
 	},
 	"dependencies": {
-		"request": ""
 	}
 }
