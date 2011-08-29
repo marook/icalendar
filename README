@@ -1,0 +1,16 @@
+iCalendar - An iCalendar formatter for node.js
+
+1) Usage
+2) Contact
+
+---------------------------------------------------------------------------
+Usage
+
+See example.js for an example. The example can be launched using node.js:
+
+$ node example.js
+
+---------------------------------------------------------------------------
+Contact
+
+* Markus Pielmeier <markus.pielmeier@googlemail.com>
