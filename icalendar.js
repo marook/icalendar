@@ -18,12 +18,16 @@
  */
 
 function CalendarFormatter(out, prodId){
-    out.write('BEGIN:VCALENDAR\n');
-    out.write('VERSION:2.0\n');
+    function writeln(s){
+	out.write(s);
+	out.write('\r\n');
+    }
+
+    writeln('BEGIN:VCALENDAR');
+    writeln('VERSION:2.0');
 
     out.write('PRODID:');
-    out.write(prodId);
-    out.write('\n');
+    writeln(prodId);
 
     function getFieldValue(fieldId, obj){
 	var val = obj[fieldId];
@@ -64,12 +68,11 @@ function CalendarFormatter(out, prodId){
 
 	out.write(fieldId);
 	out.write(':');
-	out.write(fieldFormatter(val));
-	out.write('\n');
+	writeln(fieldFormatter(val));
     }
 
     function writeEvent(event){
-	out.write('BEGIN:VEVENT\n');
+	writeln('BEGIN:VEVENT');
 
 	writeField('UID', event, stringFormatter);
 	writeField('DTSTAMP', event, dateFormatter);
@@ -77,11 +80,11 @@ function CalendarFormatter(out, prodId){
 	writeField('DTEND', event, dateFormatter);
 	writeField('SUMMARY', event, stringFormatter);
 
-	out.write('END:VEVENT\n');
+	writeln('END:VEVENT');
     }
 
     function end(){
-	out.write('END:VCALENDAR\n');
+	writeln('END:VCALENDAR');
     }
 
     return {
