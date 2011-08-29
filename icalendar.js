@@ -37,7 +37,25 @@ function CalendarFormatter(out, prodId){
 	return val;
     }
 
-    function writeField(fieldId, obj){
+    function stringFormatter(s){
+	return s;
+    }
+
+    function pad(val, len){
+	var s = '' + val;
+
+	while(s.length < len){
+	    s = '0' + s;
+	}
+
+	return s;
+    }
+
+    function dateFormatter(d){
+	return pad(d.getUTCFullYear(), 4) + pad(d.getUTCMonth() + 1, 2) + pad(d.getUTCDate(), 2) + 'T' + pad(d.getUTCHours(), 2) + pad(d.getUTCMinutes(), 2) + pad(d.getUTCSeconds(), 2) + 'Z';
+    }
+
+    function writeField(fieldId, obj, fieldFormatter){
 	var val = getFieldValue(fieldId, obj);
 
 	if(val === undefined){
@@ -46,15 +64,18 @@ function CalendarFormatter(out, prodId){
 
 	out.write(fieldId);
 	out.write(':');
-	out.write(val);
+	out.write(fieldFormatter(val));
 	out.write('\n');
     }
 
     function writeEvent(event){
 	out.write('BEGIN:VEVENT\n');
 
-	writeField('UID', event);
-	writeField('SUMMARY', event);
+	writeField('UID', event, stringFormatter);
+	writeField('DTSTAMP', event, dateFormatter);
+	writeField('DTSTART', event, dateFormatter);
+	writeField('DTEND', event, dateFormatter);
+	writeField('SUMMARY', event, stringFormatter);
 
 	out.write('END:VEVENT\n');
     }
