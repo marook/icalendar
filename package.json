@@ -1,0 +1,16 @@
+{
+	"name": "icalendar",
+	"version": "0.0.1",
+	"main": "icalendar.js",
+	"description": "An iCalendar formatter",
+	"keywords": ["ical", "ics", "calendar"],
+	"homepage": "https://github.com/marook/icalendar",
+	"author": "Markus Pielmeier <markus.pielmeier@googlemail.com>",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/marook/icalendar"
+	},
+	"dependencies": {
+		"request": ""
+	}
+}
